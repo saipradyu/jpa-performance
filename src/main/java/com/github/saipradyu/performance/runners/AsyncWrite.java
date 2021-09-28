@@ -31,11 +31,12 @@ public class AsyncWrite implements CommandLineRunner {
   public void run(String... args) throws Exception {
     List<List<Person>> batches = createBatches();
     long startTime = System.nanoTime();
-    List<CompletableFuture<Void>> futureList = new ArrayList<>();
-    for (List<Person> personList: batches) {
-      futureList.add(service.doAsyncBatch(personList));
-    }
-    futureList.forEach(CompletableFuture::join);
+    //List<CompletableFuture<Void>> futureList = new ArrayList<>();
+    service.doAsyncBatch();
+//    for (List<Person> personList: batches) {
+//      futureList.add(service.doAsyncBatch(personList));
+//    }
+    //futureList.forEach(CompletableFuture::join);
     long endTime = System.nanoTime();
     log.info("Asynchronous Batch Write took: " + TimeUnit.NANOSECONDS.toMillis(endTime - startTime));
   }

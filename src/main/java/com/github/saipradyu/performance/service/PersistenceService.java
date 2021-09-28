@@ -5,7 +5,6 @@ import static com.github.saipradyu.performance.utils.Utils.TEST_SIZE;
 import com.github.saipradyu.performance.domain.Person;
 import com.github.saipradyu.performance.domain.rpsy.PersonRepository;
 import com.github.saipradyu.performance.utils.Utils;
-import java.util.List;
 import java.util.concurrent.CompletableFuture;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -18,7 +17,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 @Service
-@Transactional
 @RequiredArgsConstructor
 @Slf4j
 public class PersistenceService {
@@ -46,10 +44,24 @@ public class PersistenceService {
     }
   }
 
+  public void saveToPersistenceContext() {
+    for (int i = TEST_SIZE; i < 2 * TEST_SIZE; i++) {
+      Person person = Utils.createRandomPerson(i+1);
+      entityManager.persist(person);
+    }
+  }
+
+  public void readFromLevelOneCache() {
+    for (int i = TEST_SIZE + 1; i <= TEST_SIZE + 50; i++) {
+      Person person = entityManager.find(Person.class, (long) i);
+      log.info("Found person " + i + " with " + person.toString());
+    }
+  }
+
   @Async
   @Transactional
-  public CompletableFuture<Void> doAsyncBatch(List<Person> personList) {
-    repository.saveAll(personList);
+  public CompletableFuture<Void> doAsyncBatch() {
+    entityManager.flush();
     return CompletableFuture.completedFuture(null);
   }
 }
