@@ -1,6 +1,6 @@
 package com.github.saipradyu.performance.utils;
 
-import com.github.saipradyu.performance.domain.Person;
+import com.github.saipradyu.performance.domain.model.Person;
 
 public class Utils {
   public static final int BATCH_SIZE = 5;

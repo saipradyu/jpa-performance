@@ -2,7 +2,7 @@ package com.github.saipradyu.performance.service;
 
 import static com.github.saipradyu.performance.utils.Utils.TEST_SIZE;
 
-import com.github.saipradyu.performance.domain.Person;
+import com.github.saipradyu.performance.domain.model.Person;
 import com.github.saipradyu.performance.domain.rpsy.PersonRepository;
 import com.github.saipradyu.performance.utils.Utils;
 import java.util.concurrent.CompletableFuture;

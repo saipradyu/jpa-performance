@@ -1,4 +1,4 @@
-package com.github.saipradyu.performance.domain;
+package com.github.saipradyu.performance.domain.model;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;

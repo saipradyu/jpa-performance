@@ -3,12 +3,11 @@ package com.github.saipradyu.performance.runners;
 import static com.github.saipradyu.performance.utils.Utils.POOL_SIZE;
 import static com.github.saipradyu.performance.utils.Utils.TEST_SIZE;
 
-import com.github.saipradyu.performance.domain.Person;
+import com.github.saipradyu.performance.domain.model.Person;
 import com.github.saipradyu.performance.service.PersistenceService;
 import com.github.saipradyu.performance.utils.Utils;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.TimeUnit;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
@@ -16,10 +15,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.collections4.ListUtils;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.core.annotation.Order;
-import org.springframework.stereotype.Component;
 
 @Order(4)
-@Component
 @RequiredArgsConstructor
 @Slf4j
 public class AsyncWrite implements CommandLineRunner {
